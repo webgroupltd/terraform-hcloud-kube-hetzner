@@ -75,6 +75,7 @@ resource "hcloud_server" "server" {
 
     inline = [
       "set -ex",
+      "apt-get -y update",
       "apt-get -y install qemu-img",
       "wget --timeout=5 --waitretry=5 --tries=5 --retry-connrefused --inet4-only ${var.opensuse_microos_mirror_link}",
       "qemu-img convert -p -f qcow2 -O host_device $(ls -a | grep -ie '^opensuse.*microos.*qcow2$') /dev/sda",
